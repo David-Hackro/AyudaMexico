@@ -2,7 +2,7 @@ package io.github.erikcaffrey.ayudamexico.help.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Hospital {
+public class Help {
 
     @SerializedName("NIVEL_DE_URGENCIA") private String levelOfUrgency;
     @SerializedName("AYUDA_REQUERIDA") private String helpRequired;

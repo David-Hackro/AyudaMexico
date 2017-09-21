@@ -11,7 +11,7 @@ public class HelpInteractor {
         this.helpService = helpService;
     }
 
-    public Observable<List<Hospital>> getHelpList() {
+    public Observable<List<Help>> getHelpList() {
         return helpService.getHelpList();
     }
 }

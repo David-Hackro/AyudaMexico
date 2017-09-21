@@ -1,9 +1,5 @@
+
 package io.github.erikcaffrey.ayudamexico.hospitals.model;
-
-/**
- * Created by hackro on 21/09/17.
- */
-
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

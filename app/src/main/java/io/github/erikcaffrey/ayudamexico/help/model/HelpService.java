@@ -4,5 +4,5 @@ import io.reactivex.Observable;
 import java.util.List;
 
 public interface HelpService {
-    Observable<List<Hospital>> getHelpList();
+    Observable<List<Help>> getHelpList();
 }

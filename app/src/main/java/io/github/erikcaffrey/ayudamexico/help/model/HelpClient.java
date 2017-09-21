@@ -7,7 +7,7 @@ import java.util.List;
 
 public class HelpClient extends HelpRetrofitClient implements HelpService {
 
-    @Override public Observable<List<Hospital>> getHelpList() {
+    @Override public Observable<List<Help>> getHelpList() {
         return getService().getHelpList(HELP_URL).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import erikjhordanrey.base_components.view.BasePresenter;
 import erikjhordanrey.base_components.view.BasePresenterLoader;
-import io.github.erikcaffrey.ayudamexico.help.model.Hospital;
+import io.github.erikcaffrey.ayudamexico.help.model.Help;
 import io.github.erikcaffrey.ayudamexico.help.model.HelpInteractor;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -22,8 +22,8 @@ public class HelpPresenter extends BasePresenter<HelpPresenter.Ui> {
 
     public void loadHelpList() {
         getUi().showLoading();
-        Disposable disposable = this.helpInteractor.getHelpList().subscribe(new Consumer<List<Hospital>>() {
-            @Override public void accept(List<Hospital> helps) throws Exception {
+        Disposable disposable = this.helpInteractor.getHelpList().subscribe(new Consumer<List<Help>>() {
+            @Override public void accept(List<Help> helps) throws Exception {
                 if (!helps.isEmpty() && helps.size() > 0) {
                     getUi().hideLoading();
                     getUi().showHelpList(helps);
@@ -46,18 +46,18 @@ public class HelpPresenter extends BasePresenter<HelpPresenter.Ui> {
         compositeDisposable.clear();
     }
 
-    public void onItemClick(Hospital hospital) {
-        getUi().showDetails(hospital);
+    public void onItemClick(Help help) {
+        getUi().showDetails(help);
     }
 
     public interface Ui extends BasePresenterLoader.Ui {
 
-        void showHelpList(List<Hospital> hospitalList);
+        void showHelpList(List<Help> helpList);
 
         void showEmptyMessage();
 
         void showErrorMessage();
 
-        void showDetails(Hospital hospital);
+        void showDetails(Help help);
     }
 }

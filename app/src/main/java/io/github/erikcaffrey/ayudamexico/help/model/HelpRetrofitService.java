@@ -7,5 +7,5 @@ import retrofit2.http.Url;
 
 public interface HelpRetrofitService {
     @GET
-    Observable<List<Hospital>> getHelpList(@Url String url);
+    Observable<List<Help>> getHelpList(@Url String url);
 }

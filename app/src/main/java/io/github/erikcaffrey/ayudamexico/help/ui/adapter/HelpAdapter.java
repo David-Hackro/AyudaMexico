@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.erikcaffrey.ayudamexico.R;
-import io.github.erikcaffrey.ayudamexico.help.model.Hospital;
+import io.github.erikcaffrey.ayudamexico.help.model.Help;
 import io.github.erikcaffrey.ayudamexico.help.presenter.HelpPresenter;
 
 /**
@@ -18,12 +18,12 @@ import io.github.erikcaffrey.ayudamexico.help.presenter.HelpPresenter;
 
 public class HelpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
-    private List<Hospital> hospitalList;
+    private List<Help> helpList;
     private HelpPresenter presenter;
 
     public HelpAdapter(HelpPresenter presenter) {
         this.presenter = presenter;
-        this.hospitalList = new ArrayList<>();
+        this.helpList = new ArrayList<>();
     }
 
     @Override
@@ -35,16 +35,16 @@ public class HelpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         HelpHolder helpHolder = (HelpHolder ) holder;
-        helpHolder.render(hospitalList.get(position));
+        helpHolder.render(helpList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return hospitalList.size();
+        return helpList.size();
     }
 
-    public void setHospitalList(List<Hospital> hospitalList) {
-        this.hospitalList = hospitalList;
+    public void setHelpList(List<Help> helpList) {
+        this.helpList = helpList;
         notifyDataSetChanged();
     }
 }

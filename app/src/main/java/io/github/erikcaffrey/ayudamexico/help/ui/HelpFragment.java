@@ -15,7 +15,7 @@ import java.util.List;
 import butterknife.BindView;
 import io.github.erikcaffrey.ayudamexico.R;
 import io.github.erikcaffrey.ayudamexico.common.CoreFragment;
-import io.github.erikcaffrey.ayudamexico.help.model.Hospital;
+import io.github.erikcaffrey.ayudamexico.help.model.Help;
 import io.github.erikcaffrey.ayudamexico.help.model.HelpClient;
 import io.github.erikcaffrey.ayudamexico.help.model.HelpInteractor;
 import io.github.erikcaffrey.ayudamexico.help.presenter.HelpPresenter;
@@ -84,8 +84,8 @@ public class HelpFragment extends CoreFragment implements HelpPresenter.Ui {
         recycler_help.setAdapter(adapter);
     }
 
-    @Override public void showHelpList(List<Hospital> hospitalList) {
-        adapter.setHospitalList(hospitalList);
+    @Override public void showHelpList(List<Help> helpList) {
+        adapter.setHelpList(helpList);
     }
 
     @Override public void showEmptyMessage() {
@@ -96,9 +96,9 @@ public class HelpFragment extends CoreFragment implements HelpPresenter.Ui {
         Toast.makeText(getContext(), "Ha Ocurrido un error", Toast.LENGTH_LONG).show();
     }
 
-    @Override public void showDetails(Hospital hospital) {
+    @Override public void showDetails(Help help) {
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(hospital.getLinkMaps()));
+        i.setData(Uri.parse(help.getLinkMaps()));
         startActivity(i);
     }
 
