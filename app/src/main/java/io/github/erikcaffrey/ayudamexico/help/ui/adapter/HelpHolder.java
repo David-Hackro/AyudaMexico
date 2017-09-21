@@ -7,7 +7,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.github.erikcaffrey.ayudamexico.R;
-import io.github.erikcaffrey.ayudamexico.help.model.Help;
+import io.github.erikcaffrey.ayudamexico.help.model.Hospital;
 import io.github.erikcaffrey.ayudamexico.help.presenter.HelpPresenter;
 
 /**
@@ -51,40 +51,40 @@ public class HelpHolder extends RecyclerView.ViewHolder  {
         ButterKnife.bind(this,itemView);
     }
 
-    private void onItemClick(final Help help) {
+    private void onItemClick(final Hospital hospital) {
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.onItemClick(help);
+                presenter.onItemClick(hospital);
             }
         });
     }
 
-        public void render(Help help) {
-            onItemClick(help);
-            renderNivel(help);
+        public void render(Hospital hospital) {
+            onItemClick(hospital);
+            renderNivel(hospital);
 
-            help_required.setText(help.getHelpRequired());
-            renderNoRequired(help);
-            direction.setText(help.getAddress());
-            zone.setText(help.getZone());
-            detail.setText(help.getDetail());
-            date_update.setText(help.getUpdateDate());
+            help_required.setText(hospital.getHelpRequired());
+            renderNoRequired(hospital);
+            direction.setText(hospital.getAddress());
+            zone.setText(hospital.getZone());
+            detail.setText(hospital.getDetail());
+            date_update.setText(hospital.getUpdateDate());
 
     }
 
-    private void renderNoRequired(Help help) {
-        if (help.getNotRequired().trim().equals("")){
+    private void renderNoRequired(Hospital hospital) {
+        if (hospital.getNotRequired().trim().equals("")){
             title_help_no_required.setVisibility(View.GONE);
             help_no_required.setVisibility(View.GONE);
         }else{
-            help_no_required.setText(help.getNotRequired());
+            help_no_required.setText(hospital.getNotRequired());
         }
     }
 
-    private void renderNivel(Help help) {
+    private void renderNivel(Hospital hospital) {
 
-        String nivelText = help.getLevelOfUrgency().toLowerCase().trim();
+        String nivelText = hospital.getLevelOfUrgency().toLowerCase().trim();
 
             if (nivelText.equalsIgnoreCase("alto"))
                 nivel.setBackgroundResource(R.color.colorTop);
@@ -94,6 +94,6 @@ public class HelpHolder extends RecyclerView.ViewHolder  {
                 nivel.setBackgroundResource(R.color.colorLow);
 
 
-        nivel.setText(help.getLevelOfUrgency());
+        nivel.setText(hospital.getLevelOfUrgency());
     }
 }

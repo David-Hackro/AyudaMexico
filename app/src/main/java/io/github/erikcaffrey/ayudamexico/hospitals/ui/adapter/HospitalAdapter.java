@@ -1,4 +1,4 @@
-package io.github.erikcaffrey.ayudamexico.help.ui.adapter;
+package io.github.erikcaffrey.ayudamexico.hospitals.ui.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,33 +9,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.github.erikcaffrey.ayudamexico.R;
-import io.github.erikcaffrey.ayudamexico.help.model.Hospital;
-import io.github.erikcaffrey.ayudamexico.help.presenter.HelpPresenter;
+import io.github.erikcaffrey.ayudamexico.hospitals.model.Hospital;
+import io.github.erikcaffrey.ayudamexico.hospitals.presenter.HospitalPresenter;
 
 /**
  * Created by hackro on 21/09/17.
  */
 
-public class HelpAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
+public class HospitalAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>  {
 
     private List<Hospital> hospitalList;
-    private HelpPresenter presenter;
+    private HospitalPresenter presenter;
 
-    public HelpAdapter(HelpPresenter presenter) {
+    public HospitalAdapter(HospitalPresenter presenter) {
         this.presenter = presenter;
         this.hospitalList = new ArrayList<>();
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.help_card,parent,false);
-        return new HelpHolder(view, presenter);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.hospital_card,parent,false);
+        return new HospitalHolder(view, presenter);
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        HelpHolder helpHolder = (HelpHolder ) holder;
-        helpHolder.render(hospitalList.get(position));
+        HospitalHolder hospitalHolder = (HospitalHolder) holder;
+        hospitalHolder.render(hospitalList.get(position));
     }
 
     @Override

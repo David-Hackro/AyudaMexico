@@ -1,32 +1,32 @@
-package io.github.erikcaffrey.ayudamexico.help.presenter;
+package io.github.erikcaffrey.ayudamexico.hospitals.presenter;
 
 import java.util.List;
 
 import erikjhordanrey.base_components.view.BasePresenter;
 import erikjhordanrey.base_components.view.BasePresenterLoader;
-import io.github.erikcaffrey.ayudamexico.help.model.Hospital;
-import io.github.erikcaffrey.ayudamexico.help.model.HelpInteractor;
+import io.github.erikcaffrey.ayudamexico.hospitals.model.Hospital;
+import io.github.erikcaffrey.ayudamexico.hospitals.model.HospitalInteractor;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
-public class HelpPresenter extends BasePresenter<HelpPresenter.Ui> {
+public class HospitalPresenter extends BasePresenter<HospitalPresenter.Ui> {
 
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
-    private final HelpInteractor helpInteractor;
+    private final HospitalInteractor hospitalInteractor;
 
 
-    public HelpPresenter(HelpInteractor helpInteractor) {
-        this.helpInteractor = helpInteractor;
+    public HospitalPresenter(HospitalInteractor hospitalInteractor) {
+        this.hospitalInteractor = hospitalInteractor;
     }
 
-    public void loadHelpList() {
+    public void loadHospitalList() {
         getUi().showLoading();
-        Disposable disposable = this.helpInteractor.getHelpList().subscribe(new Consumer<List<Hospital>>() {
+        Disposable disposable = this.hospitalInteractor.getHospitalList().subscribe(new Consumer<List<Hospital>>() {
             @Override public void accept(List<Hospital> helps) throws Exception {
                 if (!helps.isEmpty() && helps.size() > 0) {
                     getUi().hideLoading();
-                    getUi().showHelpList(helps);
+                    getUi().showHospitalList(helps);
                 } else {
                     getUi().showEmptyMessage();
                 }
@@ -52,7 +52,7 @@ public class HelpPresenter extends BasePresenter<HelpPresenter.Ui> {
 
     public interface Ui extends BasePresenterLoader.Ui {
 
-        void showHelpList(List<Hospital> hospitalList);
+        void showHospitalList(List<Hospital> helpList);
 
         void showEmptyMessage();
 

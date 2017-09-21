@@ -1,4 +1,4 @@
-package io.github.erikcaffrey.ayudamexico.help.ui;
+package io.github.erikcaffrey.ayudamexico.hospitals.ui;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -15,27 +15,30 @@ import java.util.List;
 import butterknife.BindView;
 import io.github.erikcaffrey.ayudamexico.R;
 import io.github.erikcaffrey.ayudamexico.common.CoreFragment;
-import io.github.erikcaffrey.ayudamexico.help.model.Hospital;
-import io.github.erikcaffrey.ayudamexico.help.model.HelpClient;
-import io.github.erikcaffrey.ayudamexico.help.model.HelpInteractor;
-import io.github.erikcaffrey.ayudamexico.help.presenter.HelpPresenter;
-import io.github.erikcaffrey.ayudamexico.help.ui.adapter.HelpAdapter;
+import io.github.erikcaffrey.ayudamexico.hospitals.model.Hospital;
+import io.github.erikcaffrey.ayudamexico.hospitals.model.HospitalClient;
+import io.github.erikcaffrey.ayudamexico.hospitals.model.HospitalInteractor;
+import io.github.erikcaffrey.ayudamexico.hospitals.presenter.HospitalPresenter;
+import io.github.erikcaffrey.ayudamexico.hospitals.ui.adapter.HospitalAdapter;
 
-public class HelpFragment extends CoreFragment implements HelpPresenter.Ui {
+public class HospitalsFragment extends CoreFragment   implements HospitalPresenter.Ui {
 
-    @BindView(R.id.recycler_help) RecyclerView recycler_help;
-    @BindView(R.id.activity_main_swipe_refresh_layout)  SwipeRefreshLayout swipeRefreshLayout;
-    @BindView(R.id.progress_help) ProgressBar progress_help;
+    @BindView(R.id.recycler_hospital)
+    RecyclerView recycler_hospital;
+    @BindView(R.id.activity_main_swipe_refresh_layout)
+    SwipeRefreshLayout swipeRefreshLayout;
+    @BindView(R.id.progress_help)
+    ProgressBar progress_help;
 
-    public static HelpFragment newInstance() {
-        return new HelpFragment();
+    public static HospitalsFragment newInstance() {
+        return new HospitalsFragment();
     }
 
-    private HelpAdapter adapter;
-    private HelpPresenter helpPresenter;
+    private HospitalAdapter adapter;
+    private HospitalPresenter helpPresenter;
 
     @Override protected int getLayoutResId() {
-        return R.layout.help_fragment;
+        return R.layout.hospitals_fragment;
     }
 
     @Override protected void initFragment(@NonNull View view) {
@@ -62,30 +65,30 @@ public class HelpFragment extends CoreFragment implements HelpPresenter.Ui {
 
     @Override protected void initPresenter() {
         super.initPresenter();
-        HelpClient helpClient = new HelpClient();
-        HelpInteractor helpInteractor = new HelpInteractor(helpClient);
-        helpPresenter = new HelpPresenter(helpInteractor);
+        HospitalClient helpClient = new HospitalClient();
+        HospitalInteractor helpInteractor = new HospitalInteractor(helpClient);
+        helpPresenter = new HospitalPresenter(helpInteractor);
 
     }
 
     public void loadData(){
 
         helpPresenter.setUi(this);
-        helpPresenter.loadHelpList();
+        helpPresenter.loadHospitalList();
     }
 
     private void initializeAdapter() {
-        adapter = new HelpAdapter(helpPresenter);
+        adapter = new HospitalAdapter(helpPresenter);
     }
 
     private void initializeRecyclerView() {
         GridLayoutManager lLayout = new GridLayoutManager(getActivity(), 1);
-        recycler_help.setLayoutManager(lLayout);
-        recycler_help.setAdapter(adapter);
+        recycler_hospital.setLayoutManager(lLayout);
+        recycler_hospital.setAdapter(adapter);
     }
 
-    @Override public void showHelpList(List<Hospital> hospitalList) {
-        adapter.setHospitalList(hospitalList);
+    @Override public void showHospitalList(List<Hospital> helpList) {
+        adapter.setHospitalList(helpList);
     }
 
     @Override public void showEmptyMessage() {
@@ -98,7 +101,7 @@ public class HelpFragment extends CoreFragment implements HelpPresenter.Ui {
 
     @Override public void showDetails(Hospital hospital) {
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setData(Uri.parse(hospital.getLinkMaps()));
+        i.setData(Uri.parse(hospital.getMAPA()));
         startActivity(i);
     }
 
